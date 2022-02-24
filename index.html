@@ -13,21 +13,21 @@
 
     @font-face {
         font-family: "Munken Sans";
-        src: url("/Assets/MunkenSans/Web/MunkenSansWeb-Regular.woff") format("woff");
+        src: url("Assets/MunkenSans/Web/MunkenSansWeb-Regular.woff") format("woff");
         font-style: normal;
         font-weight: normal;
     }
 
     @font-face {
         font-family: "Munken Sans";
-        src: url("/Assets/MunkenSans/Web/MunkenSansWeb-Medium.woff") format("woff");
+        src: url("Assets/MunkenSans/Web/MunkenSansWeb-Medium.woff") format("woff");
         font-style: normal;
         font-weight: bold;
     }
 
     @font-face {
         font-family: "Munken Sans";
-        src: url("/Assets/MunkenSans/Web/MunkenSansWeb-Bold.woff") format("woff");
+        src: url("Assets/MunkenSans/Web/MunkenSansWeb-Bold.woff") format("woff");
         font-style: bold;
         font-weight: bold;
     }
@@ -167,8 +167,8 @@
             <div style="position: relative; width: 80%; margin: auto;">
               <input x-model="password" :type="hide ? 'password' : 'text'" name="password" placeholder="" autofocus id="login">
               <div @click="hide = !hide" style="border-radius: 10px; padding: 5px; border-right: 1px solid #fff; background-color: #242424; width: 5em; height: calc(3.5em + 10px); display: flex; flex-direction: column; justify-content: center; position: absolute; right: -11px; top: 50%; transform: translateY(-50%); transform-origin: translateY(-50%)">
-                <img x-show="hide" style="height: 36px;" src="/Assets/Svg/show.svg" alt="download">
-                <img x-show="!hide" style="height: 50px;" src="/Assets/Svg/hide.svg" alt="download">
+                <img x-show="hide" style="height: 36px;" src="Assets/Svg/show.svg" alt="download">
+                <img x-show="!hide" style="height: 50px;" src="Assets/Svg/hide.svg" alt="download">
               </div>
             </div>
             <input type="submit" value="submit" style="visibility: hidden; width: 0px;">
@@ -190,7 +190,7 @@
           <div>
             <p style="font-weight: bold;">CLICK HERE TO RECEIVE YOUR PRIZE</p>
             <a href="#">
-              <img style="max-width: 2.5em; padding: 1em;" src="/Assets/Svg/arrow_2.svg" alt="next" 
+              <img style="max-width: 2.5em; padding: 1em;" src="Assets/Svg/arrow_2.svg" alt="next" 
                 @click.prevent="() => { state = 'show'}">
             </a>
           </div>
@@ -204,8 +204,8 @@
                 <div style="height: 4em;">
                   <h3>SCANIMATIONS</h3>
                 </div>
-                <a href="/Assets/Downloads/Scanimations.zip" download="Scanimations.zip">
-                  <img style="max-width: 2.5em; padding: 1em;" src="/Assets/Svg/arrow_1.svg" alt="download">
+                <a href="Assets/Downloads/Scanimations.zip" download="Scanimations.zip">
+                  <img style="max-width: 2.5em; padding: 1em;" src="Assets/Svg/arrow_1.svg" alt="download">
                 </a>
               </div>
               <div style="margin: 1.5em; flex: 1 1 0px">
@@ -213,7 +213,7 @@
                   <h3>SCANIMATION<br/>TUTORIAL</h3>
                 </div>
                 <a href="#" download="TODO.txt">
-                  <img style="max-width: 2.5em; padding: 1em;" src="/Assets/Svg/arrow_1.svg" alt="download">
+                  <img style="max-width: 2.5em; padding: 1em;" src="Assets/Svg/arrow_1.svg" alt="download">
                 </a>
               </div>
               <div style="margin: 1.5em; flex: 1 1 0px">
@@ -221,7 +221,7 @@
                   <h3>CIPHER FONT</h3>
                 </div>
                 <a href="#" download="TODO.txt">
-                  <img style="max-width: 2.5em; padding: 1em;" src="/Assets/Svg/arrow_1.svg" alt="download" >
+                  <img style="max-width: 2.5em; padding: 1em;" src="Assets/Svg/arrow_1.svg" alt="download" >
                 </a>
               </div>
             </div>
