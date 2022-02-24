@@ -8,21 +8,41 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet"> 
+  <script src="//unpkg.com/alpinejs" defer></script>
   <style>
+
+    @font-face {
+        font-family: "Munken Sans";
+        src: url("/Assets/MunkenSans/Web/MunkenSansWeb-Regular.woff") format("woff");
+        font-style: normal;
+        font-weight: normal;
+    }
+
+    @font-face {
+        font-family: "Munken Sans";
+        src: url("/Assets/MunkenSans/Web/MunkenSansWeb-Medium.woff") format("woff");
+        font-style: normal;
+        font-weight: bold;
+    }
+
+    @font-face {
+        font-family: "Munken Sans";
+        src: url("/Assets/MunkenSans/Web/MunkenSansWeb-Bold.woff") format("woff");
+        font-style: bold;
+        font-weight: bold;
+    }
 
     input {
       all: unset;
     }
 
     html {
-      font-family: 'Nunito Sans', sans-serif;
+      font-family: 'Munken Sans', 'Nunito Sans', sans-serif;
       background-color: #242424;
       color: #ffffff;
       height: 100%;
       margin: 0;
     }
-
-
 
     body {
       height: 100%;
@@ -37,6 +57,7 @@
       border: 1px solid #fff;
       padding: 5px;
       font-size: 3em;
+      width: 100%;
     }
 
     main {
@@ -44,33 +65,173 @@
       text-align: center;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
     }
 
+    #content {
+      margin: 0;
+      position: absolute;
+      top: 30%;
+    }
     footer {
       padding: 5px;
       text-align: center;
       flex-shrink: 0;
     }
+
+    nav {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .download-list {
+      display: flex;
+      flex-direction: row;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Small devices*/
+    @media only screen and (max-width: 600px) {
+      #content {
+        width: 90%;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .download-list {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Medium */
+    @media only screen and (max-width: 900px) {
+      #content {
+        width: 90%;
+      }
+    }
+
+    /* Large devices  */
+    @media only screen and (min-width: 900px) {
+      #content {
+        width: 80%;
+      }
+    }
+
+    @media only screen and (min-width: 1200px) {
+      #content {
+        width: 70%;
+      }
+    }
+
+    @media only screen and (min-width: 1500px) {
+      #content {
+        width: 55%;
+      }
+    }
+
+    /* For Alpine.JS */
+    [x-cloak] {
+      display: none !important;
+    }
+
+
   </style>
 </head>
-<body>
-  <nav>
-    <a>MUNKEN AGENDA 2023</a>
-    <a>CASUA LATET</a>
+<body x-data="{ state: 'locked', password: '', hide: true }">
+  <nav style="justify-content: center; padding: 2em 0em;">
+    <a 
+      @click.prevent="() => { state = 'locked'}" 
+      style="margin: 0.5em 1em; font-size: 1.1em;" 
+      href="#">MUNKEN AGENDA 2023</a><a
+      
+      @click.prevent="() => { state = 'locked'}" 
+      style="margin: 0.5em 1em; font-size: 1.1em;" 
+      href="#">CAUSA LATET</a>
   </nav>
   <main>
-    <div>
-      <h1 style="font-size: 3em; font-weight: bold;">PASSWORD NEEDED TO PROCEED</h1>
-      <form action="index.php" method="post">
-        <input type="password" name="password" placeholder="" autofocus id="login">
-        <input type="submit" value="submit" style="visibility: hidden; width: 0px;">
-      </form>
-      <h4>(LOOK BEYOND THE OBVIOUS)</h4>
+    <div id="content">
+      <div id="app" x-cloak> 
+        <!-- Lock page -->
+        <div id="prompt" x-show="state == 'locked'" x-transition x-transition:enter.delay.500ms style="position: absolute; width: 100%">
+          <h1 style="font-size: 3em; font-weight: bold;">PASSWORD NEEDED TO PROCEED</h1>
+          <form action="index.php" method="post" @submit.prevent="() => { if(password == 'Life isnt just about darkness or light rather its about finding light within the darkness') { state = 'success' }}">
+            <div style="position: relative; width: 80%; margin: auto;">
+              <input x-model="password" :type="hide ? 'password' : 'text'" name="password" placeholder="" autofocus id="login">
+              <div @click="hide = !hide" style="border-radius: 10px; padding: 5px; border-right: 1px solid #fff; background-color: #242424; width: 5em; height: calc(3.5em + 10px); display: flex; flex-direction: column; justify-content: center; position: absolute; right: -11px; top: 50%; transform: translateY(-50%); transform-origin: translateY(-50%)">
+                <img x-show="hide" style="height: 36px;" src="/Assets/Svg/show.svg" alt="download">
+                <img x-show="!hide" style="height: 50px;" src="/Assets/Svg/hide.svg" alt="download">
+              </div>
+            </div>
+            <input type="submit" value="submit" style="visibility: hidden; width: 0px;">
+          </form>
+          <h4>(LOOK BEYOND THE OBVIOUS)</h4>
+        </div>
+        <!-- Success page-->
+        <div id="success" x-show="state == 'success'" x-transition x-transition:enter.delay.500ms style="position: absolute; width: 100%">
+          <h1 style="font-size: 3em; font-weight: bold;">CONGRATULATIONS!</h1>
+          <div style="margin-bottom: 6em;">
+            <p style="font-weight: bold;">
+              YOU FOUND THE LIGHT IN THE DARKNESS
+              <br/>
+              WITH YOUR CREATIVE ABILITY YOU SUCCEEDED TO UNVEIL THE HIDDEN
+              <br/>
+              THIS SPEAKS OF YOUR GREAT WAY OF CREATING SOMETHING OF ALMOST NOTHING
+            </p>
+          </div>
+          <div>
+            <p style="font-weight: bold;">CLICK HERE TO RECEIVE YOUR PRIZE</p>
+            <a href="#">
+              <img style="max-width: 2.5em; padding: 1em;" src="/Assets/Svg/arrow_2.svg" alt="next" 
+                @click.prevent="() => { state = 'show'}">
+            </a>
+          </div>
+        </div>
+        <!-- Downloads page -->
+        <div id="success"  x-show="state == 'show'" x-transition x-transition:enter.delay.500ms style="position: absolute; width: 100%;">
+          <h1 style="font-size: 3em; font-weight: bold;">DOWNLOADS</h1>
+          <div>
+            <div class="download-list" style="display: flex; justify-content: center;">
+              <div style="margin: 1.5em; flex: 1 1 0px">
+                <div style="height: 4em;">
+                  <h3>SCANIMATIONS</h3>
+                </div>
+                <a href="/Assets/Downloads/Scanimations.zip" download="Scanimations.zip">
+                  <img style="max-width: 2.5em; padding: 1em;" src="/Assets/Svg/arrow_1.svg" alt="download">
+                </a>
+              </div>
+              <div style="margin: 1.5em; flex: 1 1 0px">
+                <div style="height: 4em;">
+                  <h3>SCANIMATION<br/>TUTORIAL</h3>
+                </div>
+                <a href="#" download="TODO.txt">
+                  <img style="max-width: 2.5em; padding: 1em;" src="/Assets/Svg/arrow_1.svg" alt="download">
+                </a>
+              </div>
+              <div style="margin: 1.5em; flex: 1 1 0px">
+                <div style="height: 4em;">
+                  <h3>CIPHER FONT</h3>
+                </div>
+                <a href="#" download="TODO.txt">
+                  <img style="max-width: 2.5em; padding: 1em;" src="/Assets/Svg/arrow_1.svg" alt="download" >
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
   <footer>
-    2022 &copy MUNKEN AGENDA
+    <!-- 2022 &copy MUNKEN AGENDA -->
   </footer>
 </body>
 </html>
